@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 127.0.0.1
 Source Server Version : 50644
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : cms
 
 Target Server Type    : MYSQL
 Target Server Version : 50644
 File Encoding         : 65001
 
-Date: 2022-03-11 15:38:59
+Date: 2022-06-08 13:52:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,10 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of account
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for admin
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
@@ -35,7 +39,12 @@ CREATE TABLE `admin` (
   `username` varchar(16) NOT NULL,
   `password` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES ('2', 'admin', 'a97be0b8761448bd54b40e483d69da52');
 
 -- ----------------------------
 -- Table structure for blog
@@ -56,6 +65,10 @@ CREATE TABLE `blog` (
 ) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of blog
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for blog_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_tag`;
@@ -64,6 +77,10 @@ CREATE TABLE `blog_tag` (
   `tag_name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of blog_tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for blog_tag_relation
@@ -79,6 +96,10 @@ CREATE TABLE `blog_tag_relation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of blog_tag_relation
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for blog_type
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_type`;
@@ -88,6 +109,10 @@ CREATE TABLE `blog_type` (
   `num` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of blog_type
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for comment
@@ -110,6 +135,10 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of comment
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for picture
 -- ----------------------------
 DROP TABLE IF EXISTS `picture`;
@@ -119,3 +148,7 @@ CREATE TABLE `picture` (
   `content` longblob NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of picture
+-- ----------------------------
