@@ -10,6 +10,7 @@
 <head>
     <title>登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
     <script src="${pageContext.request.contextPath}/static/js/jQuery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
     <style>

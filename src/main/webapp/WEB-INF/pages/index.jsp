@@ -8,6 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
     <title>乾坤未定，你我皆是黑马。</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/static/css/blog.css" rel="stylesheet">
@@ -20,6 +21,10 @@
 
         h3 a {
             color: black;
+        }
+
+        .blog-post{
+            overflow: hidden;
         }
 
         .bd-placeholder-img {
@@ -82,6 +87,15 @@
         </div><!-- /.blog-main -->
 
         <aside class="col-md-4 blog-sidebar">
+
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">Category</h4>
+                <ol class="list-unstyled mb-0">
+                    <c:forEach items="${blogTypeList}" var="blogType">
+                        <li><a href="${pageContext.request.contextPath}/index?type_id=${blogType.id}">${blogType.name}</a></li>
+                    </c:forEach>
+                </ol>
+            </div>
 
             <div class="p-4">
                 <h4 class="font-italic">Archives</h4>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>分类新增</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <jsp:include page="head.jsp"/>

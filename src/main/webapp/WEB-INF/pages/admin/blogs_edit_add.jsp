@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>博客发布</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/editor-md/css/editormd.min.css">
 <body>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>个人信息</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <style>
     .account {
@@ -22,6 +23,7 @@
         box-shadow: 5px 10px 10px rgba(0, 0, 0, .05);
     }
 </style>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 <script src="${pageContext.request.contextPath}/static/js/jQuery.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>

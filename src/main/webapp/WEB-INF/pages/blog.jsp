@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
     <title>${blog.title}</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/editor-md/css/editormd.preview.min.css">
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">

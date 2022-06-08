@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>博客</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <jsp:include page="head.jsp"/>
