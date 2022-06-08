@@ -52,6 +52,7 @@ public class CommentController {
         User user = (User) session.getAttribute("user");
         comment.setUser_id(user.getId());
         comment.setCreate_time(new Date());
+        comment.setContent(comment.getContent().replace("<", "&lt;").replace(">", "&gt;"));
         commentService.save(comment);
         modelAndView.setViewName("redirect:/blog?id=" + comment.getBlog_id());
         return modelAndView;
