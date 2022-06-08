@@ -11,6 +11,7 @@ import com.service.AdminService;
 import com.service.BlogService;
 import com.service.BlogTagService;
 import com.service.BlogTypeService;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -193,12 +194,18 @@ public class AdminController {
 
 
     @RequestMapping("/")
-    public ModelAndView admin(ModelAndView modelAndView, HttpServletRequest request, Admin admin){
+    public ModelAndView admin(ModelAndView modelAndView, HttpServletRequest request, Admin admin, String verCode){
         String method = request.getMethod();
         HttpSession session = request.getSession();
         if("GET".equals(method)){
             modelAndView.setViewName("pages/admin/admin");
         }else {
+            if (!CaptchaUtil.ver(verCode, request)) {
+                CaptchaUtil.clear(request);  // 清除session中的验证码
+                modelAndView.setViewName("pages/admin/admin");
+                modelAndView.addObject("error1", "验证码错误");
+                return modelAndView;
+            }
             admin.setPassword(MD5Utils.md5(admin.getPassword()));
             Admin admin1 = adminService.findByUsernameAndPassword(admin);
             if(admin1 == null){

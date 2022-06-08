@@ -36,7 +36,7 @@
 <body>
 <div class="account">
     <h1 align="center">管理员登录</h1>
-    <form action="${pageContext.request.contextPath}/admin/" method="post" novalidate>
+    <form action="${pageContext.request.contextPath}/admin/" method="post">
         <div class="form-group">
             <label for="username">用户名</label>
             <div class="clearfix">
@@ -54,8 +54,27 @@
             </div>
             <div class="error">${error}</div>
         </div>
+        <div class="form-group">
+            <label for="verCode">验证码</label>
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-xs-7" style="padding-left: 0">
+                        <input id="verCode" type="password" class="form-control" name="verCode">
+                    </div>
+                    <div class="col-xs-5" style="padding-left: 0">
+                        <img id="code" src="${pageContext.request.contextPath}/captcha" height="34px" />
+                    </div>
+                </div>
+            </div>
+            <div class="error">${error1}</div>
+        </div>
         <input type="submit" class="btn btn-success" value="登录">
     </form>
 </div>
 </body>
+<script>
+    $('#code').click(function () {
+        $(this).attr('src', $(this).attr('src') + '?');
+    })
+</script>
 </html>

@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
     <script src="${pageContext.request.contextPath}/static/js/jQuery.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 </head>
 <style>
     .account {
@@ -35,7 +35,7 @@
 <body>
 <div class="account">
     <h1 align="center">用户注册</h1>
-    <form action="${pageContext.request.contextPath}/register" method="post" novalidate>
+    <form action="${pageContext.request.contextPath}/register" method="post">
         <div class="form-group">
             <label for="username">用户名</label>
             <div class="clearfix">
@@ -53,9 +53,28 @@
             </div>
             <div class="error">${error}</div>
         </div>
+        <div class="form-group">
+            <label for="verCode">验证码</label>
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-xs-7" style="padding-left: 0">
+                        <input id="verCode" type="password" class="form-control" name="verCode">
+                    </div>
+                    <div class="col-xs-5" style="padding-left: 0">
+                        <img id="code" src="${pageContext.request.contextPath}/captcha" height="34px" />
+                    </div>
+                </div>
+            </div>
+            <div class="error">${error1}</div>
+        </div>
         <input type="submit" class="btn btn-success" value="注册">
         <a href="${pageContext.request.contextPath}/login" style="line-height: 34px;margin-left: 40%">回到登录页面</a>
     </form>
 </div>
 </body>
+<script>
+    $('#code').click(function () {
+        $(this).attr('src', $(this).attr('src') + '?');
+    })
+</script>
 </html>

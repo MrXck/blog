@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
     <script src="${pageContext.request.contextPath}/static/js/jQuery.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <style>
         .account {
             width: 350px;
@@ -35,7 +35,7 @@
 <body>
 <div class="account">
     <h1 align="center">用户登录</h1>
-    <form action="${pageContext.request.contextPath}/login" method="post" novalidate>
+    <form action="${pageContext.request.contextPath}/login" method="post">
         <div class="form-group">
             <label for="username">用户名</label>
             <div class="clearfix">
@@ -53,9 +53,28 @@
             </div>
             <div class="error">${error}</div>
         </div>
+        <div class="form-group">
+            <label for="verCode">验证码</label>
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-xs-7" style="padding-left: 0">
+                        <input id="verCode" type="password" class="form-control" name="verCode">
+                    </div>
+                    <div class="col-xs-5" style="padding-left: 0">
+                        <img id="code" src="${pageContext.request.contextPath}/captcha" height="34px" />
+                    </div>
+                </div>
+            </div>
+            <div class="error">${error1}</div>
+        </div>
         <input type="submit" class="btn btn-success" value="登录">
         <a href="${pageContext.request.contextPath}/register" style="line-height: 34px;margin-left: 40%">还没有账号</a>
     </form>
 </div>
 </body>
+<script>
+    $('#code').click(function () {
+        $(this).attr('src', $(this).attr('src') + '?');
+    })
+</script>
 </html>

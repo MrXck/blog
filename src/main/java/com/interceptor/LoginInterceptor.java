@@ -14,7 +14,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     // 在目标方法执行之前执行
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI();
-        if(url.endsWith("admin/") || url.endsWith("/index") || url.endsWith("/login") || url.endsWith("/register") || url.endsWith("/blog") || url.contains("static") || url.contains("editor-md") || url.contains("image") || url.contains("getComment")) {
+        if(url.endsWith("admin/") || url.endsWith("/index") || url.endsWith("/login") || url.endsWith("/register") || url.endsWith("/blog") || url.contains("static") || url.contains("editor-md") || url.contains("image") || url.contains("getComment") || url.contains("captcha")) {
             return true;
         }
         if(url.contains("admin")) {
