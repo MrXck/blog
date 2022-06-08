@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <style>

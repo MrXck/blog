@@ -10,13 +10,14 @@
 <html>
 <head>
     <title>博客发布</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/editor-md/css/editormd.min.css">
 <body>
 <jsp:include page="head.jsp"/>
 <div class="container">
-    <form action="" method="post">
+    <form action="" method="post" style="margin-top: 20px">
         <div class="form-group">
             <input type="text" class="form-control" name="title" placeholder="标题" value="${blog.title}">
         </div>
@@ -42,7 +43,7 @@
     $(function () {
         editormd('editor', {
             placeholder: '请输入内容',
-            height: 500,
+            height: 700,
             path: "${pageContext.request.contextPath}/editor-md/lib/",
             imageUpload: true,
             imageFormats: ['jpg', 'jpeg', 'png', 'gif'],

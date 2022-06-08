@@ -53,14 +53,18 @@ public class AdminController {
     ){
         List<BlogType> blogTypeList = blogTypeService.findAll();
         List<Blog> blogList;
+        String path = "";
         int num = blogService.findAllNum();
-        PageHelper.startPage(page, 10);
+        PageHelper.startPage(page, 13);
         if(type_id > 0 && !"".equals(title)){
+            path = "title=" + title + "&type_id=" + type_id;
             blogList = blogService.findByTitleAndTypeId(title, type_id);
         }else if(type_id > 0){
+            path = "type_id=" + type_id;
             blogList = blogService.findByTypeId(type_id);
         }
         else if(type_id == 0 && !"".equals(title)){
+            path = "title=" + title;
             blogList = blogService.findByTitle(title);
         }else {
             blogList = blogService.findAll();
@@ -73,6 +77,7 @@ public class AdminController {
         modelAndView.addObject("pageInfo", pageInfo);
         modelAndView.addObject("title", title);
         modelAndView.addObject("type_id", type_id);
+        modelAndView.addObject("path", path);
         return modelAndView;
     }
 
@@ -133,7 +138,7 @@ public class AdminController {
             ModelAndView modelAndView,
             @RequestParam(value = "page", defaultValue = "1")int page
             ){
-        PageHelper.startPage(page, 10);
+        PageHelper.startPage(page, 13);
         List<BlogType> blogTypeList = blogTypeService.findAll();
         PageInfo<BlogType> pageInfo = new PageInfo<>(blogTypeList);
         modelAndView.setViewName("/pages/admin/types");

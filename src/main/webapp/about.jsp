@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>关于我</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <style>
     .account {
@@ -23,7 +24,7 @@
     }
 </style>
 <body>
-<jsp:include page="WEB-INF/pages/head.jsp"/>
+<jsp:include page="WEB-INF/pages/admin/head.jsp"/>
 <div class="account">
     <h2>关于我</h2>
     <div>

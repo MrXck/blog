@@ -9,12 +9,13 @@
 <html>
 <head>
     <title>分类新增</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/ico/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <jsp:include page="head.jsp"/>
 <div class="container">
-    <form action="" method="post">
+    <form action="" method="post" style="margin-top: 20px">
         <div class="form-group">
             <input type="text" class="form-control" name="name" value="${blogType.name}">
         </div>
