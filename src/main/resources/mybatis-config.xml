@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeHandlers>
+        <!--   配置typeHandler     -->
+    </typeHandlers>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 指定方言  因为每个数据库都有不同的地方 mysql是limit 别的数据库可能不一样 -->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
+</configuration>
