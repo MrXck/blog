@@ -67,12 +67,12 @@
             <c:forEach items="${blogList}" var="blog">
                 <div class="blog-post">
                     <h3><a target="_blank" href="${pageContext.request.contextPath}/blog?id=${blog.id}"
-                           class="blog-post-title">${blog.title}</a href="${pageContext.request.contextPath}/blog?id=${blog.id}">
+                           class="blog-post-title">${blog.title.replace("<", "&lt;").replace(">", "&gt;")}</a href="${pageContext.request.contextPath}/blog?id=${blog.id}">
                     </h3>
                     <p class="blog-post-meta">${blog.create_time} by <a href="#">${blog.admin.username}</a></p>
                     <p>
-                        <c:if test="${blog.content.length() >= 200}">${blog.content.substring(0, 200).replace("#", "")}</c:if>
-                        <c:if test="${blog.content.length() < 200}">${blog.content.substring(0, blog.content.length()).replace("#", "")}</c:if>
+                        <c:if test="${blog.content.length() >= 200}">${blog.content.substring(0, 200).replace("#", "").replace("<", "&lt;").replace(">", "&gt;")}</c:if>
+                        <c:if test="${blog.content.length() < 200}">${blog.content.substring(0, blog.content.length()).replace("#", "").replace("<", "&lt;").replace(">", "&gt;")}</c:if>
                     </p>
                 </div>
                 <!-- /.blog-post -->
