@@ -36,7 +36,7 @@
 <body>
 <div class="account">
     <h1 align="center">管理员登录</h1>
-    <form action="${pageContext.request.contextPath}/admin/" method="post">
+    <form action="${pageContext.request.contextPath}/admin/" method="post" novalidate>
         <div class="form-group">
             <label for="username">用户名</label>
             <div class="clearfix">

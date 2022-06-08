@@ -35,7 +35,7 @@
 <body>
 <div class="account">
     <h1 align="center">用户登录</h1>
-    <form action="${pageContext.request.contextPath}/login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post" novalidate>
         <div class="form-group">
             <label for="username">用户名</label>
             <div class="clearfix">

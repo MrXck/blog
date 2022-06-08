@@ -50,8 +50,8 @@
             <option value="${blogType.id}">${blogType.name}</option>
         </c:forEach>
     </select>
-        <input id="title" class="form-control form-control-dark w-75" type="text" placeholder="Search" aria-label="Search">
-    <a class="text-muted" href="#" aria-label="Search" id="search">
+        <input id="title" class="form-control form-control-dark w-50" type="text" placeholder="Search" aria-label="Search">
+    <a class="text-muted w-25" href="#" aria-label="Search" id="search">
         <svg width="20" height="20" fill="none" stroke="currentColor"
              stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
              viewBox="0 0 24 24" focusable="false"><title>Search</title>
@@ -71,19 +71,9 @@
     </ul>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="${pageContext.request.contextPath}/admin/blogs">博客管理</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">ABOUT</a>
         </li>
     </ul>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="${pageContext.request.contextPath}/admin/types">分类管理</a>
-        </li>
-    </ul>
-<%--    <ul class="navbar-nav px-3">--%>
-<%--        <li class="nav-item text-nowrap">--%>
-<%--            <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">ABOUT</a>--%>
-<%--        </li>--%>
-<%--    </ul>--%>
 </nav>
 
 <script>

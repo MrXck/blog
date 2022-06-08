@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/editor-md/css/editormd.min.css">
 <body>
 <jsp:include page="head.jsp"/>
-<div class="container">
+<div class="container-fluid">
     <form action="" method="post" style="margin-top: 20px">
         <div class="form-group">
             <input type="text" class="form-control" name="title" placeholder="标题" value="${blog.title}">
