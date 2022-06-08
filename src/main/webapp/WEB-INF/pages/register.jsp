@@ -9,14 +9,14 @@
 <html>
 <head>
     <title>注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="${pageContext.request.contextPath}/static/js/jQuery.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
 </head>
 <style>
     .account {
-        width: 400px;
-        margin-top: 30px;
+        width: 350px;
+        margin-top: 10%;
         margin-left: auto;
         margin-right: auto;
         border: 1px solid #f0f0f0;
@@ -53,7 +53,7 @@
             <div class="error">${error}</div>
         </div>
         <input type="submit" class="btn btn-success" value="注册">
-        <a class="pull-right" href="${pageContext.request.contextPath}/login" style="line-height: 34px">回到登录页面</a>
+        <a href="${pageContext.request.contextPath}/login" style="line-height: 34px;margin-left: 40%">回到登录页面</a>
     </form>
 </div>
 </body>

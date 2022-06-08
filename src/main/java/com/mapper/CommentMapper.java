@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CommentMapper {
 
-    @Select("select * from comment where blog_id=#{id} order by create_time desc")
+    @Select("select * from comment where blog_id=#{id} order by create_time asc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "content", property = "content"),

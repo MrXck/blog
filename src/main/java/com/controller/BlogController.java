@@ -2,12 +2,10 @@ package com.controller;
 
 
 import com.domain.Blog;
-import com.domain.BlogTag;
 import com.domain.BlogType;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.BlogService;
-import com.service.BlogTagService;
 import com.service.BlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,31 +37,39 @@ public class BlogController {
             ModelAndView modelAndView,
 //            @RequestParam(value = "tag_id", defaultValue = "0") int tag_id,
             @RequestParam(value = "type_id", defaultValue = "0") int type_id,
-            @RequestParam(value = "title", defaultValue = "") String title
+            @RequestParam(value = "title", defaultValue = "") String title,
+            @RequestParam(value = "date", defaultValue = "") String date
     ){
 //        List<BlogTag> blogTagList = blogTagService.findAll();
         List<BlogType> blogTypeList = blogTypeService.findAll();
         List<Blog> blogList;
         int num = blogService.findAllNum();
+        String path = "";
         PageHelper.startPage(page, 10);
         if(type_id > 0 && !"".equals(title)){
+            path = "title=" + title + "&type_id=" + type_id;
             blogList = blogService.findByTitleAndTypeId(title, type_id);
         }else if(type_id > 0){
+            path = "type_id=" + type_id;
             blogList = blogService.findByTypeId(type_id);
-        }
-        else if(type_id == 0 && !"".equals(title)){
+        }else if(type_id == 0 && !"".equals(title)){
+            path = "title=" + title;
             blogList = blogService.findByTitle(title);
+        }else if(!"".equals(date)){
+            path = "date=" + date;
+            blogList = blogService.findByDate(date);
         }else {
             blogList = blogService.findAll();
         }
+        List<String> archives = blogService.findArchives();
         PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
         modelAndView.setViewName("pages/index");
         modelAndView.addObject("blogList", blogList);
         modelAndView.addObject("blogTypeList", blogTypeList);
         modelAndView.addObject("num", num);
         modelAndView.addObject("pageInfo", pageInfo);
-        modelAndView.addObject("title", title);
-        modelAndView.addObject("type_id", type_id);
+        modelAndView.addObject("archives", archives);
+        modelAndView.addObject("path", path);
         return modelAndView;
     }
 

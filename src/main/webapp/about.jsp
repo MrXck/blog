@@ -31,7 +31,7 @@
     </div>
     <div style="margin-top: 30px">
         <p>QQ：1971877559</p>
-        <p>GitHub：<a href="https://github.com/MrXck">https://github.com/MrXck</a></p>
+        <p>GitHub：<a target="_blank" href="https://github.com/MrXck">https://github.com/MrXck</a></p>
     </div>
 </div>
 </body>

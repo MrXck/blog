@@ -15,7 +15,6 @@ public class AdminServiceImpl implements AdminService {
     @Qualifier("adminMapper")
     private AdminMapper adminMapper;
 
-
     @Override
     public Admin findByUsernameAndPassword(Admin admin) {
         return adminMapper.findByUsernameAndPassword(admin);

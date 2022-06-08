@@ -47,6 +47,19 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<Blog> findByDate(String date) {
+        String start = date + "-01";
+        String end = date + "-31";
+        return blogMapper.findByDate(start, end);
+    }
+
+    @Override
+    public List<String> findArchives() {
+        return blogMapper.findArchives();
+    }
+
+
+    @Override
     public void save(Blog blog) {
         blogMapper.save(blog);
     }

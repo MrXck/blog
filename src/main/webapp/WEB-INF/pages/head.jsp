@@ -9,43 +9,39 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <script src="${pageContext.request.contextPath}/static/js/jQuery.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="${pageContext.request.contextPath}/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/index">首页</a>
+<header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+            <a class="text-muted" href="${pageContext.request.contextPath}/index">首页</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form action="${pageContext.request.contextPath}/index" class="navbar-form navbar-left" role="search">
-                <select class="form-control" name="type_id" id="">
-                    <option value="0">请选择分类</option>
-                    <c:forEach items="${blogTypeList}" var="blogType">
-                        <option value="${blogType.id}">${blogType.name}</option>
-                    </c:forEach>
-                </select>
-                <div class="form-group">
-                    <input type="text" name="title" class="form-control" placeholder="请输入你要搜索的标题">
-                </div>
-                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <c:if test="${user != null}">
-                    <li><a href="${pageContext.request.contextPath}/login">${user.username}</a></li>
-                </c:if>
-                <c:if test="${user == null}">
-                    <li><a href="${pageContext.request.contextPath}/login">登录</a></li>
-                </c:if>
-                <li><a href="${pageContext.request.contextPath}/about.jsp">ABOUT ME</a></li>
-            </ul>
+        <div class="col-4 text-center">
+            <a class="blog-header-logo text-dark" href="#">Large</a>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+            <input type="text" class="form-control col-md-8" placeholder="请输入你要搜索的标题" id="title">
+            <a class="text-muted" href="#" aria-label="Search" id="search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
+                     viewBox="0 0 24 24" focusable="false"><title>Search</title>
+                    <circle cx="10.5" cy="10.5" r="7.5"/>
+                    <path d="M21 21l-5.2-5.2"/>
+                </svg>
+            </a>
+            <c:if test="${user != null}">
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="${pageContext.request.contextPath}/login">${user.username}</a>
+            </c:if>
+            <c:if test="${user == null}">
+                <a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/login">登录</a>
+            </c:if>
         </div>
     </div>
-</nav>
+</header>
+
+
+<script>
+    $('#search').click(function () {
+        location.href = '${pageContext.request.contextPath}/index?title=' + $('#title').val();
+    })
+</script>
