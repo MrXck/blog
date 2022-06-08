@@ -80,4 +80,11 @@
     $('#search').click(function () {
         location.href = '${pageContext.request.contextPath}/admin/blogs?title=' + $('#title').val() + '&type_id=' + $('select').val();
     })
+
+    $('#title').bind('keyup', function(event) {
+        if (event.keyCode == "13") {
+            //回车执行查询
+            $('#search').click();
+        }
+    });
 </script>

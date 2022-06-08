@@ -39,7 +39,7 @@ public interface BlogMapper {
     @Select("select count(*) from blog")
     int findAllNum();
 
-    @Select("select * from blog where title LIKE concat('%', #{title}, '%') order by create_time desc")
+    @Select("select * from blog where title LIKE concat('%', #{title}, '%') or content LIKE concat('%', #{title}, '%') order by create_time desc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),

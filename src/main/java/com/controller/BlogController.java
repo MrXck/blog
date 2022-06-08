@@ -68,6 +68,7 @@ public class BlogController {
         PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
         modelAndView.setViewName("pages/index");
         modelAndView.addObject("blogList", blogList);
+        modelAndView.addObject("title", title);
         modelAndView.addObject("blogTypeList", blogTypeList);
         modelAndView.addObject("num", num);
         modelAndView.addObject("pageInfo", pageInfo);

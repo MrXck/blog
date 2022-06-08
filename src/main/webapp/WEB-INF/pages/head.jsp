@@ -19,7 +19,7 @@
             <a class="blog-header-logo text-dark" href="#">Large</a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-            <input type="text" class="form-control col-md-8" placeholder="Search" id="title">
+            <input type="text" class="form-control col-md-8" placeholder="Search" id="title" value="${title}">
             <a class="text-muted" href="#" aria-label="Search" id="search">
                 <svg width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
@@ -44,4 +44,11 @@
     $('#search').click(function () {
         location.href = '${pageContext.request.contextPath}/index?title=' + $('#title').val();
     })
+
+    $('#title').bind('keyup', function(event) {
+        if (event.keyCode == "13") {
+            //回车执行查询
+            $('#search').click();
+        }
+    });
 </script>
