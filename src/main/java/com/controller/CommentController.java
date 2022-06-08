@@ -34,6 +34,11 @@ public class CommentController {
         ObjectMapper objectMapper = new ObjectMapper();
         String json;
         try {
+            for (Comment comment : commentList) {
+                User user = comment.getUser();
+                user.setPassword("");
+                comment.setUser(user);
+            }
             json = objectMapper.writeValueAsString(commentList);
         } catch (Exception e) {
             e.printStackTrace();
