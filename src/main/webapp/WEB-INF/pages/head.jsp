@@ -19,9 +19,9 @@
             <a class="blog-header-logo text-dark" href="#">Large</a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
-            <input type="text" class="form-control col-md-8" placeholder="title" id="title">
+            <input type="text" class="form-control col-md-8" placeholder="Search" id="title">
             <a class="text-muted" href="#" aria-label="Search" id="search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                <svg width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
                      viewBox="0 0 24 24" focusable="false"><title>Search</title>
                     <circle cx="10.5" cy="10.5" r="7.5"/>

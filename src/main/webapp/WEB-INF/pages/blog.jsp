@@ -177,8 +177,8 @@
                     comment = $("#template").clone();
                     comment.attr("id", data[i].id);
                     comment.css("display", "block");
-                    comment.find(".username").text(data[i].user.username);
-                    comment.find(".create_time").text(data[i].create_time);
+                    comment.find(".username").html(data[i].user.username);
+                    comment.find(".create_time").html(data[i].create_time);
                     comment.find(".content").html(data[i].content)
                     comment_.append(comment);
                 }
@@ -188,8 +188,8 @@
                     comment = $("#template").clone();
                     comment.attr("id", data[i].id);
                     comment.css("display", "block");
-                    comment.find(".username").text(data[i].user.username);
-                    comment.find(".create_time").text(data[i].create_time);
+                    comment.find(".username").html(data[i].user.username);
+                    comment.find(".create_time").html(data[i].create_time);
                     comment.find(".content").html(data[i].content);
                     $("#" + data[i].comment_id).children(".comment-children").append(comment);
                 }
