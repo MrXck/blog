@@ -3,6 +3,7 @@ package com.controller;
 
 import com.domain.Blog;
 import com.domain.BlogType;
+import com.domain.User;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.BlogService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -74,11 +77,13 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/blog")
-    public ModelAndView blog(ModelAndView modelAndView, int id){
+    public ModelAndView blog(ModelAndView modelAndView, int id, HttpServletRequest request){
         Blog blog = blogService.findById(id);
         List<BlogType> blogTypeList = blogTypeService.findAll();
+        HttpSession session = request.getSession();
         modelAndView.addObject("blog", blog);
         modelAndView.addObject("blogTypeList", blogTypeList);
+        modelAndView.addObject("user", session.getAttribute("user"));
         modelAndView.setViewName("pages/blog");
         return modelAndView;
     }

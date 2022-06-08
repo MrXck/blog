@@ -40,7 +40,7 @@
             <label for="username">用户名</label>
             <div class="clearfix">
                 <div class="col-xs-12" style="padding-left: 0">
-                    <input id="username" type="text" class="form-control" name="username" minlength="6" maxlength="16">
+                    <input id="username" type="text" class="form-control" name="username" value="${username}" maxlength="16">
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <label for="password">密码</label>
             <div class="clearfix">
                 <div class="col-xs-12" style="padding-left: 0">
-                    <input id="password" type="password" class="form-control" name="password" minlength="6" maxlength="16">
+                    <input id="password" type="password" class="form-control" name="password" value="${password}" maxlength="16">
                 </div>
             </div>
             <div class="error">${error}</div>

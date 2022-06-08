@@ -32,7 +32,9 @@
         margin-bottom: 20px;
     }
 
-
+    #reset{
+        display: none;
+    }
 
     .bd-placeholder-img {
         font-size: 1.125rem;
@@ -86,17 +88,24 @@
                 </div>
             </div>
 
-            <div class="blog-post" id="comment">
-                <form action="${pageContext.request.contextPath}/comment/add">
-                    <input id="comment_id" type="hidden" name="comment_id">
-                    <input type="hidden" name="blog_id" value="${blog.id}">
-                    <textarea class="form-control" rows="7" name="content" placeholder="请输入评论信息"></textarea>
-                    <button type="submit" style="margin-top: 10px" class="btn btn-success pull-right">提交</button>
-                    <button type="button" style="margin-top: 10px; margin-right: 20px" id="reset"
-                            class="btn btn-info pull-right">取消回复
-                    </button>
-                </form>
-            </div>
+            <c:if test="${user != null}">
+                <div class="blog-post" id="comment">
+                    <form action="${pageContext.request.contextPath}/comment/add">
+                        <input id="comment_id" type="hidden" name="comment_id">
+                        <input type="hidden" name="blog_id" value="${blog.id}">
+                        <textarea class="form-control" rows="7" name="content" placeholder="请输入评论信息"></textarea>
+                        <button type="submit" style="margin-top: 10px" class="btn btn-success pull-right">提交</button>
+                        <button type="button" style="margin-top: 10px; margin-right: 20px" id="reset"
+                                class="btn btn-info pull-right">取消回复
+                        </button>
+                    </form>
+                </div>
+            </c:if>
+            <c:if test="${user == null}">
+                <p align="center">
+                    登录后可评论点击 <a href="${pageContext.request.contextPath}/login">登录</a>
+                </p>
+            </c:if>
         </div><!-- /.blog-main -->
     </div><!-- /.row -->
 </main><!-- /.container -->
@@ -133,6 +142,7 @@
 <script>
 
     var huifu = $("#comment_id");
+    var reset = $("#reset");
 
     $(function () {
         editormd.markdownToHTML('editor', {
@@ -146,11 +156,15 @@
     comment_.on("click", "a", function () {
         huifu.val("");
         huifu.val($(this).parent().attr("id"));
-        console.log($(this).parent().attr("id"));
+        var user = $(this).parent().find('.username').eq(0).text();
+        console.log(user);
+        reset.text("取消回复" + user);
+        reset.css('display', 'inline');
     })
 
-    $("#reset").click(function () {
+    reset.click(function () {
         huifu.val("");
+        $(this).css('display', 'none');
     })
 
     $.post("${pageContext.request.contextPath}/comment/getComment",
