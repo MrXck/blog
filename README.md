@@ -31,6 +31,13 @@ http://localhost:8081/cms_war/index
 后台页面
 http://localhost:8081/cms_war/admin/
 
+通过maven打包后放在tomcat下运行
+初始页面
+http://localhost:8081/cms/index
+
+后台页面
+http://localhost:8081/cms/admin/
+
 初始管理员用户
 admin
 admin
