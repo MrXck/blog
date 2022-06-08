@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/editor-md/css/editormd.preview.min.css">
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/static/css/blog.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/static/css/tocbot.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/static/js/tocbot.min.js"></script>
 </head>
 <style>
     .title {
@@ -29,6 +31,8 @@
         margin-top: 10px;
         margin-bottom: 20px;
     }
+
+
 
     .bd-placeholder-img {
         font-size: 1.125rem;
@@ -42,6 +46,14 @@
     @media (min-width: 768px) {
         .bd-placeholder-img-lg {
             font-size: 3.5rem;
+        }
+
+        #catalogue{
+            display: block !important;
+            position: fixed;
+            top: 10%;
+            right: 20px;
+            width: 15%;
         }
     }
 </style>
@@ -58,7 +70,7 @@
                 <div class=""><a href="#">${blog.admin.username}</a> ${blog.create_time}</div>
                 <div class="">
                     <h2 class="title">${blog.title}</h2>
-                    <div id="editor" class="content">
+                    <div id="editor" class="content js-toc-content">
                         <textarea>${blog.content}</textarea>
                     </div>
                 </div>
@@ -87,7 +99,6 @@
             </div>
         </div><!-- /.blog-main -->
     </div><!-- /.row -->
-
 </main><!-- /.container -->
 
 <footer class="blog-footer">
@@ -98,6 +109,10 @@
     </p>
 </footer>
 
+<div id="catalogue" style="display: none">
+    <ol class="js-toc"></ol>
+</div>
+
 <div class="comment" id="template" style="display: none">
     <p><span class="username">用户名称</span> <span class="col-xs-offset-2 create_time">评论时间</span></p>
     <p class="content">评论内容</p>
@@ -105,7 +120,6 @@
     <div class="comment-children" style="margin-left: 10%">
     </div>
 </div>
-
 </body>
 
 <script src="${pageContext.request.contextPath}/editor-md/editormd.min.js"></script>
@@ -169,5 +183,24 @@
         }
     )
 
+</script>
+<script>
+
+    function init() {
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '.js-toc',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: '.js-toc-content',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3, h4, h5, h6',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    }
+
+    window.onload = function () {
+        setTimeout(init, 50);
+    }
 </script>
 </html>
