@@ -71,7 +71,7 @@
     </ul>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="${pageContext.request.contextPath}/about.jsp">ABOUT</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/WEB-INF/about.jsp">ABOUT</a>
         </li>
     </ul>
 </nav>

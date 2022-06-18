@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-md-12 blog-main">
             <div class="blog-post">
-                <div class=""><a href="#">${blog.admin.username}</a> ${blog.create_time}</div>
+                <div class=""><a href="${pageContext.request.contextPath}/about">${blog.admin.username}</a> ${blog.create_time}</div>
                 <div class="">
                     <h2 class="title">${blog.title}</h2>
                     <div id="editor" class="content js-toc-content">

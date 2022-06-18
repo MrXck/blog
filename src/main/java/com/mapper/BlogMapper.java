@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BlogMapper {
 
-    @Select("select * from blog order by create_time desc")
+    @Select("select id,title,LEFT(content, 300) content,create_time,type_id,admin_id from blog order by create_time desc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
@@ -39,7 +39,7 @@ public interface BlogMapper {
     @Select("select count(*) from blog")
     int findAllNum();
 
-    @Select("select * from blog where title LIKE concat('%', #{title}, '%') or content LIKE concat('%', #{title}, '%') order by create_time desc")
+    @Select("select id,title,LEFT(content, 300) content,create_time,type_id,admin_id from blog where title LIKE concat('%', #{title}, '%') or content LIKE concat('%', #{title}, '%') order by create_time desc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
@@ -66,7 +66,7 @@ public interface BlogMapper {
     })
     List<Blog> findByTitle(@Param("title") String title);
 
-    @Select("select * from blog where create_time > #{start} and create_time < #{end} order by create_time desc")
+    @Select("select id,title,LEFT(content, 300) content,create_time,type_id,admin_id from blog where create_time > #{start} and create_time < #{end} order by create_time desc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
@@ -93,7 +93,7 @@ public interface BlogMapper {
     })
     List<Blog> findByDate(@Param("start") String start, @Param("end") String end);
 
-    @Select("select * from blog where type_id=#{type_id} order by create_time desc")
+    @Select("select id,title,LEFT(content, 300) content,create_time,type_id,admin_id from blog where type_id=#{type_id} order by create_time desc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
@@ -120,7 +120,7 @@ public interface BlogMapper {
     })
     List<Blog> findByTypeId(int type_id);
 
-    @Select("select * from blog where type_id=#{type_id} and title LIKE concat('%', #{title}, '%') order by create_time desc")
+    @Select("select id,title,LEFT(content, 300) content,create_time,type_id,admin_id from blog where type_id=#{type_id} and title LIKE concat('%', #{title}, '%') order by create_time desc")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),

@@ -96,7 +96,7 @@ public class UserController {
 
     @RequestMapping("/about")
     public ModelAndView about(ModelAndView modelAndView){
-        modelAndView.setViewName("/about.jsp");
+        modelAndView.setViewName("about");
         return modelAndView;
     }
 

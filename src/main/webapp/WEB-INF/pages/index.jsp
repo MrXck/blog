@@ -69,10 +69,9 @@
                     <h3><a target="_blank" href="${pageContext.request.contextPath}/blog?id=${blog.id}"
                            class="blog-post-title">${blog.title.replace("<", "&lt;").replace(">", "&gt;")}</a href="${pageContext.request.contextPath}/blog?id=${blog.id}">
                     </h3>
-                    <p class="blog-post-meta">${blog.create_time} by <a href="${pageContext.request.contextPath}/about.jsp">${blog.admin.username}</a></p>
+                    <p class="blog-post-meta">${blog.create_time} by <a href="${pageContext.request.contextPath}/about">${blog.admin.username}</a></p>
                     <p>
-                        <c:if test="${blog.content.length() >= 200}">${blog.content.substring(0, 200).replace("#", "").replace("<", "&lt;").replace(">", "&gt;")}</c:if>
-                        <c:if test="${blog.content.length() < 200}">${blog.content.substring(0, blog.content.length()).replace("#", "").replace("<", "&lt;").replace(">", "&gt;")}</c:if>
+                        ${blog.content.replace("#", "")}
                     </p>
                 </div>
                 <!-- /.blog-post -->

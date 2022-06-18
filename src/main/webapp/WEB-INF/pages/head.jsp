@@ -16,7 +16,7 @@
             <a class="text-muted" href="${pageContext.request.contextPath}/index">Home</a>
         </div>
         <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">Large</a>
+            <a class="blog-header-logo text-dark" href="${pageContext.request.contextPath}/index">Large</a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
             <input type="text" class="form-control col-md-8" placeholder="Search" id="title" value="${title}">
