@@ -7,5 +7,5 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    response.sendRedirect("/cms/index");
+    response.sendRedirect("/cms_war/index");
 %>

@@ -1,10 +1,6 @@
 package com.controller;
 
 
-import com.domain.Picture;
-import com.service.PictureService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,45 +8,61 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.OutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.*;
 
 @Controller
 @RequestMapping("/image")
 public class PictureController {
-    @Autowired
-    @Qualifier("pictureService")
-    private PictureService pictureService;
 
-    @RequestMapping(value = "/upload", produces = "text/html;charset=utf-8")
+    public static final String PATH = System.getProperty("user.dir") + "/files/";
+
+    @RequestMapping(value = "/upload")
     @ResponseBody
-    public String upload(@RequestParam("editormd-image-file") MultipartFile multipartFile, HttpServletRequest request) throws Exception {
-        String filename = multipartFile.getOriginalFilename().split("\\.")[0];
-        byte[] content = multipartFile.getBytes();
-        Picture picture = new Picture();
-        picture.setPicture_name(filename);
-        picture.setContent(content);
-        String json;
-        String local = request.getRequestURL().toString();
-        local = local.replace("//", ",");
-        local = local.split("/")[0] + "/" + local.split("/")[1];
-        local = local.replace(",", "//");
-        try{
-            pictureService.save(picture);
-            json = "{\"success\": 1, \"url\": \"" + local + "/image/getImage/" + filename + "\"}";
-        }catch (Exception e){
-            e.printStackTrace();
-            json = "{\"success\": 0, \"message\": \"" + "文件上传错误" + "\"}";
+    public Map<String, Object> upload(@RequestParam("editormd-image-file") MultipartFile multipartFile, HttpServletRequest request) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+
+        File file = new File(PATH);
+        if (!file.exists()) {
+            file.mkdirs();
         }
-        return json;
+
+        try {
+            String[] split = multipartFile.getOriginalFilename().split("\\.");
+            String path = UUID.randomUUID() + "." + split[1];
+            multipartFile.transferTo(new File(PATH + path));
+
+            map.put("success", 1);
+            map.put("url", "/image/getImage/" + path);
+        } catch (Exception e) {
+            map.put("success", 0);
+            map.put("message", "文件上传错误");
+            e.printStackTrace();
+        }
+
+        return map;
     }
 
-    @RequestMapping("/getImage/{filename}")
-    public void getImage(@PathVariable String filename, HttpServletResponse response) throws Exception {
-        Picture picture = pictureService.findByFilename(filename);
-        OutputStream out = response.getOutputStream();
-        out.write(picture.getContent());
+    @RequestMapping(value = "/getImage/{filename:.+}")
+    public void getImage(@PathVariable("filename") String filename, HttpServletResponse response) throws Exception {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(new File(PATH + filename));
+            ServletOutputStream outputStream = response.getOutputStream();
+            int len = 0;
+            byte[] bytes = new byte[1024];
+            while ((len = fileInputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, len);
+                outputStream.flush();
+            }
+            outputStream.close();
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

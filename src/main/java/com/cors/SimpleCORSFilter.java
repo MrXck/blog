@@ -33,7 +33,7 @@ public class SimpleCORSFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String isCrossStr = filterConfig.getInitParameter("IsCross");
-        isCross = isCrossStr.equals("true") ? true : false;
+        isCross = isCrossStr.equals("true");
         System.out.println(isCrossStr);
     }
 
