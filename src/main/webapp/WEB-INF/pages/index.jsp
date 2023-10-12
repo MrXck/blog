@@ -69,7 +69,7 @@
                     <h3><a target="_blank" href="${pageContext.request.contextPath}/blog?id=${blog.id}"
                            class="blog-post-title">${blog.title.replace("<", "&lt;").replace(">", "&gt;")}</a href="${pageContext.request.contextPath}/blog?id=${blog.id}">
                     </h3>
-                    <p class="blog-post-meta">${blog.create_time} by ${blog.admin.username}</a></p>
+                    <p class="blog-post-meta">${blog.create_time} by <a href="${pageContext.request.contextPath}/about">${blog.admin.username}</a></p>
                     <p>
                         ${blog.content.replace("#", "")}
                     </p>
@@ -105,6 +105,13 @@
                         </li>
                     </c:forEach>
 
+                </ol>
+            </div>
+
+            <div class="p-4">
+                <h4 class="font-italic">Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://github.com/MrXck" target="_blank">GitHub</a></li>
                 </ol>
             </div>
         </aside><!-- /.blog-sidebar -->

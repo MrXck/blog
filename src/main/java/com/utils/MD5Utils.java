@@ -13,8 +13,4 @@ public class MD5Utils {
         // 再加密一次 而且加了盐
         return DigestUtils.md5Hex(md5Password + SOLT);
     }
-
-    public static void main(String[] args) {
-        System.out.println(md5("123456"));
-    }
 }

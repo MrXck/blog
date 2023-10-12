@@ -131,6 +131,35 @@
                     </div>
                 </div>
             </div>
+
+<%--            <div class="col-md-12" style="padding: 0">--%>
+<%--                <p>评论</p>--%>
+<%--                <div class="card mb-12 shadow-sm">--%>
+<%--                    <div class="card-body">--%>
+<%--                        <div id="body">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+
+<%--            <c:if test="${user != null}">--%>
+<%--                <div class="blog-post" id="comment">--%>
+<%--                    <form action="${pageContext.request.contextPath}/comment/add">--%>
+<%--                        <input id="comment_id" type="hidden" name="comment_id">--%>
+<%--                        <input type="hidden" name="blog_id" value="${blog.id}">--%>
+<%--                        <textarea class="form-control" rows="7" name="content" placeholder="请输入评论信息"></textarea>--%>
+<%--                        <button type="submit" style="margin-top: 10px" class="btn btn-success pull-right">提交</button>--%>
+<%--                        <button type="button" style="margin-top: 10px; margin-right: 20px" id="reset"--%>
+<%--                                class="btn btn-info pull-right">取消回复--%>
+<%--                        </button>--%>
+<%--                    </form>--%>
+<%--                </div>--%>
+<%--            </c:if>--%>
+<%--            <c:if test="${user == null}">--%>
+<%--                <p align="center">--%>
+<%--                    登录后可评论点击 <a href="${pageContext.request.contextPath}/login">登录</a>--%>
+<%--                </p>--%>
+<%--            </c:if>--%>
         </div><!-- /.blog-main -->
     </div><!-- /.row -->
 </main><!-- /.container -->
@@ -147,6 +176,13 @@
     <ol class="js-toc"></ol>
 </div>
 
+<div class="comment" id="template" style="display: none">
+    <p><span class="username">用户名称</span> <span class="col-xs-offset-2 create_time">评论时间</span></p>
+    <p class="content">评论内容</p>
+    <a href="#comment" class="huifu" style="margin-left: 10%">回复</a>
+    <div class="comment-children" style="margin-left: 10%">
+    </div>
+</div>
 </body>
 
 <script src="${pageContext.request.contextPath}/editor-md/editormd.min.js"></script>
@@ -158,6 +194,10 @@
 <script src="${pageContext.request.contextPath}/editor-md/lib/flowchart.min.js"></script>
 <script src="${pageContext.request.contextPath}/editor-md/lib/jquery.flowchart.min.js"></script>
 <script>
+
+    var huifu = $("#comment_id");
+    var reset = $("#reset");
+
     $(function () {
         editormd.markdownToHTML('editor', {
             htmlDecode: 'style,script,iframe'
@@ -166,6 +206,52 @@
             hljs.highlightBlock(block)
         })
     })
+
+    var comment_ = $("#body");
+
+    comment_.on("click", "a", function () {
+        huifu.val("");
+        huifu.val($(this).parent().attr("id"));
+        var user = $(this).parent().find('.username').eq(0).text();
+        console.log(user);
+        reset.text("取消回复" + user);
+        reset.css('display', 'inline');
+    })
+
+    reset.click(function () {
+        huifu.val("");
+        $(this).css('display', 'none');
+    })
+
+    $.post("${pageContext.request.contextPath}/comment/getComment",
+        {id:${blog.id}},
+        function (data) {
+            data = JSON.parse(data);
+            var comment;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].comment_id == null) {
+                    comment = $("#template").clone();
+                    comment.attr("id", data[i].id);
+                    comment.css("display", "block");
+                    comment.find(".username").html(data[i].user.username);
+                    comment.find(".create_time").html(data[i].create_time);
+                    comment.find(".content").html(data[i].content)
+                    comment_.append(comment);
+                }
+            }
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].comment_id != null) {
+                    comment = $("#template").clone();
+                    comment.attr("id", data[i].id);
+                    comment.css("display", "block");
+                    comment.find(".username").html(data[i].user.username);
+                    comment.find(".create_time").html(data[i].create_time);
+                    comment.find(".content").html(data[i].content);
+                    $("#" + data[i].comment_id).children(".comment-children").append(comment);
+                }
+            }
+        }
+    )
 
 </script>
 <script>

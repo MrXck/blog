@@ -113,3 +113,42 @@ CREATE TABLE `blog_type` (
 -- ----------------------------
 -- Records of blog_type
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for comment
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(200) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment_id` int(11) DEFAULT NULL,
+  `blog_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comment_user` (`user_id`),
+  KEY `comment_id` (`comment_id`),
+  KEY `comment_blog` (`blog_id`),
+  CONSTRAINT `comment_blog` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `comment_user` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for picture
+-- ----------------------------
+DROP TABLE IF EXISTS `picture`;
+CREATE TABLE `picture` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `picture_name` varchar(32) NOT NULL,
+  `content` longblob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of picture
+-- ----------------------------

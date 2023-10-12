@@ -42,26 +42,26 @@ public class BlogController {
             @RequestParam(value = "type_id", defaultValue = "0") int type_id,
             @RequestParam(value = "title", defaultValue = "") String title,
             @RequestParam(value = "date", defaultValue = "") String date
-    ) {
+    ){
 //        List<BlogTag> blogTagList = blogTagService.findAll();
         List<BlogType> blogTypeList = blogTypeService.findAll();
         List<Blog> blogList;
         int num = blogService.findAllNum();
         String path = "";
         PageHelper.startPage(page, 10);
-        if (type_id > 0 && !"".equals(title)) {
+        if(type_id > 0 && !"".equals(title)){
             path = "title=" + title + "&type_id=" + type_id;
             blogList = blogService.findByTitleAndTypeId(title, type_id);
-        } else if (type_id > 0) {
+        }else if(type_id > 0){
             path = "type_id=" + type_id;
             blogList = blogService.findByTypeId(type_id);
-        } else if (type_id == 0 && !"".equals(title)) {
+        }else if(type_id == 0 && !"".equals(title)){
             path = "title=" + title;
             blogList = blogService.findByTitle(title);
-        } else if (!"".equals(date)) {
+        }else if(!"".equals(date)){
             path = "date=" + date;
             blogList = blogService.findByDate(date);
-        } else {
+        }else {
             blogList = blogService.findAll();
         }
         List<String> archives = blogService.findArchives();
@@ -78,7 +78,7 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/blog")
-    public ModelAndView blog(ModelAndView modelAndView, int id, HttpServletRequest request) {
+    public ModelAndView blog(ModelAndView modelAndView, int id, HttpServletRequest request){
         Blog blog = blogService.findById(id);
         List<BlogType> blogTypeList = blogTypeService.findAll();
         HttpSession session = request.getSession();
