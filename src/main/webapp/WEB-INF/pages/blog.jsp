@@ -223,35 +223,35 @@
         $(this).css('display', 'none');
     })
 
-    $.post("${pageContext.request.contextPath}/comment/getComment",
-        {id:${blog.id}},
-        function (data) {
-            data = JSON.parse(data);
-            var comment;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].comment_id == null) {
-                    comment = $("#template").clone();
-                    comment.attr("id", data[i].id);
-                    comment.css("display", "block");
-                    comment.find(".username").html(data[i].user.username);
-                    comment.find(".create_time").html(data[i].create_time);
-                    comment.find(".content").html(data[i].content)
-                    comment_.append(comment);
-                }
-            }
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].comment_id != null) {
-                    comment = $("#template").clone();
-                    comment.attr("id", data[i].id);
-                    comment.css("display", "block");
-                    comment.find(".username").html(data[i].user.username);
-                    comment.find(".create_time").html(data[i].create_time);
-                    comment.find(".content").html(data[i].content);
-                    $("#" + data[i].comment_id).children(".comment-children").append(comment);
-                }
-            }
-        }
-    )
+    <%--$.post("${pageContext.request.contextPath}/comment/getComment",--%>
+    <%--    {id:${blog.id}},--%>
+    <%--    function (data) {--%>
+    <%--        data = JSON.parse(data);--%>
+    <%--        var comment;--%>
+    <%--        for (let i = 0; i < data.length; i++) {--%>
+    <%--            if (data[i].comment_id == null) {--%>
+    <%--                comment = $("#template").clone();--%>
+    <%--                comment.attr("id", data[i].id);--%>
+    <%--                comment.css("display", "block");--%>
+    <%--                comment.find(".username").html(data[i].user.username);--%>
+    <%--                comment.find(".create_time").html(data[i].create_time);--%>
+    <%--                comment.find(".content").html(data[i].content)--%>
+    <%--                comment_.append(comment);--%>
+    <%--            }--%>
+    <%--        }--%>
+    <%--        for (let i = 0; i < data.length; i++) {--%>
+    <%--            if (data[i].comment_id != null) {--%>
+    <%--                comment = $("#template").clone();--%>
+    <%--                comment.attr("id", data[i].id);--%>
+    <%--                comment.css("display", "block");--%>
+    <%--                comment.find(".username").html(data[i].user.username);--%>
+    <%--                comment.find(".create_time").html(data[i].create_time);--%>
+    <%--                comment.find(".content").html(data[i].content);--%>
+    <%--                $("#" + data[i].comment_id).children(".comment-children").append(comment);--%>
+    <%--            }--%>
+    <%--        }--%>
+    <%--    }--%>
+    <%--)--%>
 
 </script>
 <script>
